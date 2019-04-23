@@ -1,4 +1,3 @@
-[TOC]
 #一、Redis主从配置
 ## 1、环境说明
 
@@ -8,7 +7,7 @@
 | redis-slave01 | 192.168.56.12 | redis 5.0.3（从）   |
 | redis-slave02 | 192.168.56.13 | redis 5.0.3（从）   |
 
-##2、修改主从的redis配置文件
+## 2、修改主从的redis配置文件
 
 ```bash
 [root@redis-master ~]# grep -Ev "^$|#" /usr/local/redis/redis.conf 
