@@ -1,4 +1,4 @@
-#一、Redis主从配置
+# 一、Redis主从配置
 ## 1、环境说明
 
 | 主机名称      | IP地址        | redis版本和角色说明 |
@@ -41,7 +41,7 @@ dir /var/redis/
 replicaof 192.168.56.11 6379	#配置为master的从
 masterauth 123456	#配置主的密码
 ```
-##3、启动主从redis
+## 3、启动主从redis
 这里需要注意的是：redis主从和mysql主从不一样，redis主从不用事先同步数据，它会自动同步过去
 ```bash
 [root@redis-master ~]# systemctl start redis
@@ -54,7 +54,7 @@ tcp        0      0 192.168.56.12:6379      0.0.0.0:*               LISTEN      
 [root@redis-slave02 ~]# netstat -tulnp |grep redis
 tcp        0      0 192.168.56.13:6379      0.0.0.0:*               LISTEN      1628/redis-server 1 
 ```
-##3、数据同步验证
+## 4、数据同步验证
 ```bash
 [root@redis-master ~]# redis-cli -h 192.168.56.11	#主上写入数据
 192.168.56.11:6379> KEYS *
@@ -89,7 +89,7 @@ OK
 
 Redis Sentinel是Redis高可用的实现方案。Sentinel是一个管理多个Redis实例的工具，它可以实现对Redis的监控、通知、自动故障转移。
 
-##2、Redis Sentinel的主要功能
+## 2、Redis Sentinel的主要功能
 
 Sentinel的主要功能包括主节点存活检测、主从运行情况检测、自动故障转移（failover）、主从切换。Redis的Sentinel最小配置是一主一从。 Redis的Sentinel系统可以用来管理多个Redis服务器，该系统可以执行以下四个任务：
 
@@ -109,7 +109,7 @@ Sentinel的主要功能包括主节点存活检测、主从运行情况检测、
 
   在Redis Sentinel模式下，客户端应用在初始化时连接的是Sentinel节点集合，从中获取主节点的信息。
 
-##3、Redis Sentinel的工作流程
+## 3、Redis Sentinel的工作流程
 
 Sentinel是Redis的高可用性解决方案：
 
@@ -433,7 +433,7 @@ cluster-node-timeout 15000		#集群节点连接超时时间，15秒
 [root@redis-master ~]# mkdir /var/redis_6380	#创建6380实例的数据目录
 ```
 
-##4、启动Redis
+## 4、启动Redis
 
 ```bash
 [root@redis-master ~]# systemctl start redis
@@ -594,7 +594,7 @@ M: 587adfa041d0c0a14aa1a875bdec219a56b10201 192.168.56.13:6379
 >>> Check slots coverage...
 [OK] All 16384 slots covered.
 ```
-###7.2、添加集群节点
+### 7.2、添加集群节点
 
 添加集群节点，在redis-master节点上，复制配置文件，增加6381和6382端口的实例，如下：
 
